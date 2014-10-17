@@ -7,13 +7,14 @@ namespace DataTransferSQLToEl
 		static void Main(string[] args)
 		{
 			var repo = new Repo();
-			repo.SaveToElasticsearchPerson();
+			
 			repo.SaveToElasticsearchAddress();
-
-			var personX = repo.GetPersonFromElasticsearch(345);
 			var addressX = repo.GetAddressFromElasticsearch(22);
+
+			//repo.SaveToElasticsearchPerson();
+			//var personX = repo.GetPersonFromElasticsearch(345);
 			Console.WriteLine(addressX);
-			Console.WriteLine(personX);
+			//Console.WriteLine(personX);
 		}
 	}
 }

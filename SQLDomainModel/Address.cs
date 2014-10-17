@@ -1,11 +1,11 @@
+using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+
 namespace DataTransferSQLToEl.SQLDomainModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     [Table("Person.Address")]
     public partial class Address
     {
@@ -29,7 +29,8 @@ namespace DataTransferSQLToEl.SQLDomainModel
         public string PostalCode { get; set; }
 
 		// This type is not supported yet...
-        //public DbGeography SpatialLocation { get; set; }
+		[JsonIgnore]
+        public DbGeography SpatialLocation { get; set; }
 
         public Guid rowguid { get; set; }
 
