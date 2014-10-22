@@ -15,7 +15,7 @@ namespace DataTransferSQLToEl
 			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
 			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
 			{
-				person = elasticSearchContext.GetEntity<Person>(id);
+				person = elasticSearchContext.GetDocument<Person>(id);
 			}
 
 			return person;
@@ -27,7 +27,7 @@ namespace DataTransferSQLToEl
 			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
 			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
 			{
-				address = elasticSearchContext.GetEntity<Address>(id);
+				address = elasticSearchContext.GetDocument<Address>(id);
 			}
 
 			return address;
@@ -55,7 +55,7 @@ namespace DataTransferSQLToEl
 
 						foreach (var item in collection)
 						{
-							elasticSearchContext.AddUpdateEntity(item, item.AddressID);
+							elasticSearchContext.AddUpdateDocument(item, item.AddressID);
 							string t = "yes";
 						}
 
@@ -95,7 +95,7 @@ namespace DataTransferSQLToEl
 						
 						foreach (var item in collection)
 						{
-							elasticSearchContext.AddUpdateEntity(item, item.BusinessEntityID);
+							elasticSearchContext.AddUpdateDocument(item, item.BusinessEntityID);
 							string t = "yes";
 						}
 
