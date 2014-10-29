@@ -12,10 +12,10 @@ namespace DataTransferSQLToEl
 		public Person GetPersonFromElasticsearch(int id)
 		{
 			Person person; 
-			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
-			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
+			IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
+			using (var ElasticsearchContext = new ElasticsearchContext("http://localhost:9200/", ElasticsearchMappingResolver))
 			{
-				person = elasticSearchContext.GetDocument<Person>(id);
+				person = ElasticsearchContext.GetDocument<Person>(id);
 			}
 
 			return person;
@@ -24,10 +24,10 @@ namespace DataTransferSQLToEl
 		public Address GetAddressFromElasticsearch(int id)
 		{
 			Address address;
-			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
-			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
+			IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
+			using (var ElasticsearchContext = new ElasticsearchContext("http://localhost:9200/", ElasticsearchMappingResolver))
 			{
-				address = elasticSearchContext.GetDocument<Address>(id);
+				address = ElasticsearchContext.GetDocument<Address>(id);
 			}
 
 			return address;
@@ -35,10 +35,10 @@ namespace DataTransferSQLToEl
 
 		public void SaveToElasticsearchAddress()
 		{
-			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
-			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
+			IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
+			using (var ElasticsearchContext = new ElasticsearchContext("http://localhost:9200/", ElasticsearchMappingResolver))
 			{
-				//elasticSearchContext.TraceProvider = new ConsoleTraceProvider();
+				//ElasticsearchContext.TraceProvider = new ConsoleTraceProvider();
 				using (var modelPerson = new ModelPerson())
 				{
 					int pointer = 0;
@@ -55,12 +55,12 @@ namespace DataTransferSQLToEl
 
 						foreach (var item in collection)
 						{
-							elasticSearchContext.AddUpdateDocument(item, item.AddressID);
+							ElasticsearchContext.AddUpdateDocument(item, item.AddressID);
 							string t = "yes";
 						}
 
 						stopwatch.Start();
-						elasticSearchContext.SaveChanges();
+						ElasticsearchContext.SaveChanges();
 						stopwatch.Stop();
 						Console.WriteLine("Time taken to insert {0} AddressID documents: {1}", interval, stopwatch.Elapsed);
 						stopwatch.Reset();
@@ -74,10 +74,10 @@ namespace DataTransferSQLToEl
 		private Stopwatch stopwatch = new Stopwatch();
 		public void SaveToElasticsearchPerson()
 		{
-			IElasticSearchMappingResolver elasticSearchMappingResolver = new ElasticSearchMappingResolver();
-			using (var elasticSearchContext = new ElasticSearchContext("http://localhost:9200/", elasticSearchMappingResolver))
+			IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
+			using (var ElasticsearchContext = new ElasticsearchContext("http://localhost:9200/", ElasticsearchMappingResolver))
 			{
-				//elasticSearchContext.TraceProvider = new ConsoleTraceProvider();
+				//ElasticsearchContext.TraceProvider = new ConsoleTraceProvider();
 				using (var modelPerson = new ModelPerson())
 				{
 					int pointer = 0;
@@ -95,12 +95,12 @@ namespace DataTransferSQLToEl
 						
 						foreach (var item in collection)
 						{
-							elasticSearchContext.AddUpdateDocument(item, item.BusinessEntityID);
+							ElasticsearchContext.AddUpdateDocument(item, item.BusinessEntityID);
 							string t = "yes";
 						}
 
 						stopwatch.Start();
-						elasticSearchContext.SaveChanges();
+						ElasticsearchContext.SaveChanges();
 						stopwatch.Stop();
 						Console.WriteLine("Time taken to insert {0} person documents: {1}", interval, stopwatch.Elapsed);
 						stopwatch.Reset();
