@@ -43,7 +43,7 @@ namespace DataTransferSQLToEl
 				{
 					int pointer = 0;
 					const int interval = 100;
-					int length = modelPerson.CountryRegion.Count();
+					int length = modelPerson.Address.Count();
 
 					while (pointer < length)
 					{
