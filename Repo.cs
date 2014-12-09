@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using DataTransferSQLToEl.SQLDomainModel;
 using ElasticsearchCRUD;
+using ElasticsearchCRUD.ContextAddDeleteUpdate.IndexModel.SettingsModel;
 using ElasticsearchCRUD.Tracing;
 
 namespace DataTransferSQLToEl
@@ -37,7 +38,7 @@ namespace DataTransferSQLToEl
 		{
 			IElasticsearchMappingResolver ElasticsearchMappingResolver = new ElasticsearchMappingResolver();
 			using (var ElasticsearchContext = new ElasticsearchContext("http://localhost:9200/", ElasticsearchMappingResolver))
-			{
+			{		
 				//ElasticsearchContext.TraceProvider = new ConsoleTraceProvider();
 				using (var modelPerson = new ModelPerson())
 				{
