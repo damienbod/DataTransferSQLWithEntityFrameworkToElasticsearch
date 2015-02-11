@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using DataTransferSQLToEl.SQLDomainModel;
 using ElasticsearchCRUD;
-using ElasticsearchCRUD.ContextAddDeleteUpdate.IndexModel.SettingsModel;
-using ElasticsearchCRUD.Tracing;
 
 namespace DataTransferSQLToEl
 {
